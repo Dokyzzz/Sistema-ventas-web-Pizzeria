@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Pizzería Secreta</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Barra Superior (Top Bar) -->
+    <section id="topbar" class="padding-xs">
+        <div class="container">
+            <div class="topbar-container">
+                <div class="topbar-contactus">
+                    <a href="tel:+51999999999"><i class="fa-solid fa-phone"></i> (+51) 999 999 999</a>
+                    <a href="mailto:lacaleta@gmail.com"><i class="fa-regular fa-envelope"></i> lacaleta@gmail.com</a>
+                </div>
+                <div class="topbar-social">
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="TikTok"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Encabezado Principal / Navegación -->
+    <header id="header">
+        <div class="container">
+            <div class="nav-bar">
+                <div class="nav-logo">
+                    <a href="#header">
+                        <img src="images/lacaleta.png" class="img-fluid" alt="Logo La Caleta">
+                    </a>
+                </div>
+
+                <div class="nav-menu-text">
+                    <em>"El que come callado, come doble"</em>
+                </div>
+
+                <nav class="nav-menu">
+                    <a class="nav-menu-link nav-menu-link-active" href="#">Menú</a>
+                    <a class="nav-menu-link" href="#">Promociones</a>
+                    <a class="nav-menu-link" href="#">Locales</a>
+                    <a class="nav-menu-link-shop" href="#">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="moneda">S/</span>
+                        <span class="carrito-total">0.00</span>
+                    </a>
+                    <a class="nav-menu-login" href="#">
+                        <i class="fa-solid fa-user"></i>Iniciar sesión
+                    </a>
+                </nav>
+
+                <!-- Botón Hamburguesa para Móviles -->
+                <div class="nav-menu-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <section id="banner" class="banner-principal">
+            <div class="banner-contenido">
+                <p class="banner-subtitulo">Lo secreto, a veces sabe mejor...</p>
+                <h1 class="banner-titulo">COME CALETA.</h1>
+                <a href="#" class="btn-cta">Descubrir Menú Oculto</a>
+            </div>
+        </section>
+
+        <section id="principales">
+            <div class="container">
+                <h1>LAS PRINCIPALES</h1>
+                <div class="productos-flex-row">
+                    <div class="productos-card">
+                        <div class="productos-card-container">
+                            <img src="images/producto_pepperoni.jpg" class="img-fluid" alt="producto_pepperoni">
+                            <h3>La Cómplice</h3>
+                            <p>Nuestra pizza más leal con abundante pepperoni crocante</p>
+                            <div class="productos-card-action">
+                                <div class="button-add"><i class="fa-solid fa-plus"></i></div>
+                                <div class="producto-precio">
+                                    <span class="moneda">S/</span>
+                                    <span class="precio-monto" data-pizza="la-complice">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="productos-card-container">
+                            <img src="images/producto_americana.jpg" class="img-fluid" alt="producto_americana">
+                            <h3>El Pacto</h3>
+                            <p>Tocino ahumado crocante y jamón bajo un pacto de queso fundido</p>
+                            <div class="productos-card-action">
+                                <div class="button-add"><i class="fa-solid fa-plus"></i></div>
+                                <div class="producto-precio">
+                                    <span class="moneda">S/</span>
+                                    <span class="precio-monto" data-pizza="la-complice">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="productos-card-container">
+                            <img src="images/producto_hawaiana.jpg" class="img-fluid" alt="producto_hawaiana">
+                            <h3>La Coartada</h3>
+                            <p>Dulzura de piña caramelizada con jamón selecto en secreto</p>
+                            <div class="productos-card-action">
+                                <div class="button-add"><i class="fa-solid fa-plus"></i></div>
+                                <div class="producto-precio">
+                                    <span class="moneda">S/</span>
+                                    <span class="precio-monto" data-pizza="la-complice">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="productos-card-container">
+                            <img src="images/producto_vegetariana.jpg" class="img-fluid" alt="producto_vegetariana">
+                            <h3>La Confesión</h3>
+                            <p>Pimientos asados, champiñones, aceitunas y albahaca fresca</p>
+                            <div class="productos-card-action">
+                                <div class="button-add"><i class="fa-solid fa-plus"></i></div>
+                                <div class="producto-precio">
+                                    <span class="moneda">S/</span>
+                                    <span class="precio-monto" data-pizza="la-complice">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="productos-card-container">
+                            <img src="images/producto_meat.jpg" class="img-fluid" alt="producto_meat">
+                            <h3>La Cofradía</h3>
+                            <p>Alianza contundente de pepperoni, carne sazonada y tocino</p>
+                            <div class="productos-card-action">
+                                <div class="button-add"><i class="fa-solid fa-plus"></i></div>
+                                <div class="producto-precio">
+                                    <span class="moneda">S/</span>
+                                    <span class="precio-monto" data-pizza="la-complice">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recomendaciones">
+            <div class="container">
+                <h1>LAS RECOMENDADAS</h1>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
