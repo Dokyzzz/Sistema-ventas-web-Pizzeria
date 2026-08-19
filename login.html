@@ -5,64 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Caleta | Pizzería Secreta</title>
-    <link rel="stylesheet" href="style/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style/styles.css">
 </head>
 
 <body>
 
-    <!-- Barra Superior (Top Bar) -->
-    <section id="topbar" class="padding-xs">
-        <div class="container">
-            <div class="topbar-container">
-                <div class="topbar-contactus">
-                    <a href="tel:+51999999999"><i class="fa-solid fa-phone"></i> (+51) 999 999 999</a>
-                    <a href="mailto:lacaleta@gmail.com"><i class="fa-regular fa-envelope"></i> lacaleta@gmail.com</a>
-                </div>
-                <div class="topbar-social">
-                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" title="TikTok"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                </div>
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Contactos (En móvil se oculta el correo para que no sature) -->
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap"><i class="fa-solid fa-phone me-1"></i> (+51) 999 999
+                    999</a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap"><i
+                        class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com</a>
+            </div>
+            <!-- Redes Sociales -->
+            <div class="d-flex align-items-center gap-3">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Encabezado Principal / Navegación -->
-    <header id="header">
+    <!-- Encabezado / Navegación Responsive -->
+    <header id="header" class="navbar navbar-expand-lg py-2">
         <div class="container">
-            <div class="nav-bar">
-                <div class="nav-logo">
-                    <a href="../Pizzeria-La-Caleta-main/index.html">
-                        <img src="images/lacaleta.png" class="img-fluid" alt="Logo La Caleta">
-                    </a>
-                </div>
-
-                <div class="nav-menu-text">
-                    <em>"El que come callado, come doble"</em>
-                </div>
-
-                <nav class="nav-menu">
-                    <a class="nav-menu-link nav-menu-link-active" href="#">Menú</a>
-                    <a class="nav-menu-link" href="#">Promociones</a>
-                    <a class="nav-menu-link" href="#">Locales</a>
-                    <a class="nav-menu-link-shop" href="#">
+            <!-- Logo -->
+            <a class="navbar-brand me-3" href="#header" style="width: 130px;">
+                <img src="images/lacaleta.png" class="img-fluid" alt="Logo La Caleta">
+            </a>
+            <!-- Frase (Visible solo en pantallas grandes) -->
+            <div class="d-none d-xl-block text-secondary fst-italic small">
+                "El que come callado, come doble"
+            </div>
+            <!-- Botón Hamburguesa (Aparece en tablets y móviles) -->
+            <button class="navbar-toggler border-0 text-white shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false"
+                aria-label="Abrir menú">
+                <i class="fa-solid fa-bars fs-3 text-white"></i>
+            </button>
+            <!-- Enlaces colapsables -->
+            <div class="collapse navbar-collapse justify-content-end" id="menuNavegacion">
+                <nav
+                    class="d-flex flex-column flex-lg-row align-items-end align-items-lg-center gap-3 gap-lg-2 p-3 p-lg-0 my-2 my-lg-0">
+                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap"
+                        href="#">Menú</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="#">Promociones</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="#">Locales</a>
+                    <!-- Carrito -->
+                    <a class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap"
+                        href="#">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span class="moneda">S/</span>
-                        <span class="carrito-total">0.00</span>
+                        <span>S/ 0.00</span>
                     </a>
-                    <a class="nav-menu-login" href="../login.html">
-                        <i class="fa-solid fa-user"></i>Iniciar sesión
+                    <!-- Iniciar Sesión -->
+                    <a class="d-flex align-items-center gap-2 text-white ms-lg-2 text-nowrap" href="login.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Iniciar sesión</span>
                     </a>
                 </nav>
-
-                <!-- Botón Hamburguesa para Móviles -->
-                <div class="nav-menu-toggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </div>
         </div>
     </header>
@@ -113,12 +118,13 @@
     </div>
 </main>
 
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="small text-white-50 mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
