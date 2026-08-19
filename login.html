@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Pizzería Secreta</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Barra Superior (Top Bar) -->
+    <section id="topbar" class="padding-xs">
+        <div class="container">
+            <div class="topbar-container">
+                <div class="topbar-contactus">
+                    <a href="tel:+51999999999"><i class="fa-solid fa-phone"></i> (+51) 999 999 999</a>
+                    <a href="mailto:lacaleta@gmail.com"><i class="fa-regular fa-envelope"></i> lacaleta@gmail.com</a>
+                </div>
+                <div class="topbar-social">
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="TikTok"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Encabezado Principal / Navegación -->
+    <header id="header">
+        <div class="container">
+            <div class="nav-bar">
+                <div class="nav-logo">
+                    <a href="../Pizzeria-La-Caleta-main/index.html">
+                        <img src="images/lacaleta.png" class="img-fluid" alt="Logo La Caleta">
+                    </a>
+                </div>
+
+                <div class="nav-menu-text">
+                    <em>"El que come callado, come doble"</em>
+                </div>
+
+                <nav class="nav-menu">
+                    <a class="nav-menu-link nav-menu-link-active" href="#">Menú</a>
+                    <a class="nav-menu-link" href="#">Promociones</a>
+                    <a class="nav-menu-link" href="#">Locales</a>
+                    <a class="nav-menu-link-shop" href="#">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="moneda">S/</span>
+                        <span class="carrito-total">0.00</span>
+                    </a>
+                    <a class="nav-menu-login" href="../login.html">
+                        <i class="fa-solid fa-user"></i>Iniciar sesión
+                    </a>
+                </nav>
+
+                <!-- Botón Hamburguesa para Móviles -->
+                <div class="nav-menu-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+<main>
+    <div class="contenedor-login">
+        <div class="login-grid">
+            
+            <div class="login-seccion login-izq">
+                <h2 class="login-titulo">INICIAR SESIÓN</h2>
+                <form>
+                    <div class="username">
+                        <label>Correo electrónico <span>*</span></label>
+                        <input type="email" placeholder="Ej. nombre@mail.com" required>
+                    </div>
+
+                    <div class="username input-password-box">
+                        <label>Contraseña <span>*</span></label>
+                        <div class="input-relative">
+                            <input type="password" placeholder="pizza123" required>
+                            <i class="fa-regular fa-eye icono-ojo"></i>
+                        </div>
+                    </div>
+
+                    <div class="recordar">Olvidé mi contraseña</div>
+
+                    <input type="submit" value="INICIAR SESIÓN" class="btn-login">
+                </form>
+            </div>
+
+            <div class="login-seccion login-der">
+                <h2 class="login-titulo">CREAR CUENTA</h2>
+                
+                <p class="beneficios-subtitulo">Crea una y aprovecha los beneficios:</p>
+                
+                <ul class="beneficios-lista">
+                    <li>Realiza tus compras de manera más ágil.</li>
+                    <li>Guarda múltiples direcciones de envío y facturación.</li>
+                    <li>Realiza el seguimiento a tus compras y revisa tus pedidos realizados.</li>
+                    <li>Haz una lista de productos favoritos.</li>
+                </ul>
+
+                <a href="#" class="btn-crear-cuenta">CREAR CUENTA</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
