@@ -321,3 +321,18 @@ footer {
         border-bottom: 1px solid #e5e5e5;
     }
 }
+
+.btn-carrusel {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-negro-suave);
+    color: var(--color-blanco);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: var(--transicion);
+}
+
+.btn-carrusel:hover {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+}
