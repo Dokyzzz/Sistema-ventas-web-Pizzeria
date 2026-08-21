@@ -64,7 +64,7 @@
                         <span>S/ 0.00</span>
                     </a>
                     <!-- Iniciar Sesión -->
-                    <a class="d-flex align-items-center gap-2 text-white ms-lg-2 text-nowrap" href="login.html">
+                    <a class="d-flex align-items-center gap-2 text-white ms-lg-2 text-nowrap" href="#">
                         <i class="fa-solid fa-user"></i>
                         <span>Iniciar sesión</span>
                     </a>
@@ -84,7 +84,7 @@
         </section>
 
         <!-- Descripción -->
-        <section id="descripcion" class="py-2">
+        <section id="descripcion" class="py-3">
             <div class="container">
                 <div class="row align-items-center justify-content-center g-4 text-center text-md-start">
                     <div class="col-8 col-sm-5 col-md-4 text-center">
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-12 col-md-6 text-white">
                         <h2 class="fw-bold mb-3">¿POR QUÉ CALETA?</h2>
-                        <p class="fs-6 opacity-75 mb-0">
+                        <p class="fs-6 opacity-75 mb-0 pb-2">
                             Porque la verdadera pasión no se anuncia, se disfruta en silencio. Nuestra receta es nuestro
                             secreto mejor guardado.
                         </p>
@@ -101,13 +101,26 @@
             </div>
         </section>
 
-        <!-- Principales (Línea horizontal fija) -->
+        <!-- Principales (Línea horizontal con flechas) -->
         <section id="principales" class="py-5">
             <div class="container">
-                <h2 class="fw-bold mb-4 text-white">LAS PRINCIPALES</h2>
-                <div class="d-flex flex-nowrap overflow-x-auto gap-4 pb-3 carrusel-horizontal">
+                <!-- Encabezado con título y botones de navegación -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold mb-0 text-white">LAS PRINCIPALES</h2>
+                    <div class="d-flex gap-2">
+                        <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                            onclick="desplazar('carrusel-principales', -280)" aria-label="Anterior">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                            onclick="desplazar('carrusel-principales', 280)" aria-label="Siguiente">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
 
-                    <!-- Tarjeta 1 -->
+                <div id="carrusel-principales"
+                    class="d-flex flex-nowrap overflow-x-auto gap-4 pb-3 carrusel-horizontal">
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
                         <img src="images/producto_pepperoni.jpg" class="card-img-top object-fit-cover"
                             style="height: 160px;" alt="La Cómplice">
@@ -124,8 +137,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Tarjeta 2 -->
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
                         <img src="images/producto_americana.jpg" class="card-img-top object-fit-cover"
                             style="height: 160px;" alt="El Pacto">
@@ -142,8 +153,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Tarjeta 3 -->
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
                         <img src="images/producto_hawaiana.jpg" class="card-img-top object-fit-cover"
                             style="height: 160px;" alt="La Coartada">
@@ -160,8 +169,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Tarjeta 4 -->
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
                         <img src="images/producto_vegetariana.jpg" class="card-img-top object-fit-cover"
                             style="height: 160px;" alt="La Confesión">
@@ -178,14 +185,13 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
                         <img src="images/producto_meat.jpg" class="card-img-top object-fit-cover" style="height: 160px;"
-                            alt="La Cofradia">
+                            alt="La Cofradía">
                         <div class="card-body d-flex flex-column text-center p-3">
                             <h5 class="fw-bold fs-6 mb-1">La Cofradía</h5>
-                            <p class="text-secondary small flex-grow-1 mb-3">Alianza contundente de pepperoni,
-                                carne sazonada y tocino</p>
+                            <p class="text-secondary small flex-grow-1 mb-3">Alianza contundente de pepperoni, carne
+                                sazonada y tocino</p>
                             <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                                 <button
                                     class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center">
@@ -195,7 +201,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -210,16 +215,28 @@
 
         <section id="combos" class="py-5">
             <div class="container">
-                <h2 class="fw-bold mb-4 text-white">COMBOS SECRETOS</h2>
-                <div class="d-flex flex-nowrap overflow-x-auto gap-4 pb-3 carrusel-horizontal">
-                    <!-- Tarjeta 1 -->
+                <!-- Encabezado con título y botones de navegación -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold mb-0 text-white">COMBOS SECRETOS</h2>
+                    <div class="d-flex gap-2">
+                        <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                            onclick="desplazar('carrusel-combos', -280)" aria-label="Anterior">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                            onclick="desplazar('carrusel-combos', 280)" aria-label="Siguiente">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="carrusel-combos" class="d-flex flex-nowrap overflow-x-auto gap-4 pb-3 carrusel-horizontal">
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
-                        <img src="images/producto_combo1.jpg" class="card-img-top object-fit-cover"
-                        alt="Dúo Clandestino">
+                        <img src="images/producto_combo1.jpg" class="card-img-top" alt="Dúo Clandestino">
                         <div class="card-body d-flex flex-column text-center p-3">
                             <h5 class="fw-bold fs-6 mb-1">Dúo Clandestino</h5>
-                            <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Grandes (La 
-                                Cómplice + El Pacto) + Gaseosa 1.5L</p>
+                            <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Grandes (La Cómplice + El Pacto) +
+                                Gaseosa 1.5L</p>
                             <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                                 <button
                                     class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center">
@@ -229,14 +246,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tarjeta 2 -->
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
-                        <img src="images/producto_combo2.jpg" class="card-img-top object-fit-cover"
-                            alt="Trío en Secreto">
+                        <img src="images/producto_combo2.jpg" class="card-img-top" alt="Trío en Secreto">
                         <div class="card-body d-flex flex-column text-center p-3">
                             <h5 class="fw-bold fs-6 mb-1">Trío en Secreto</h5>
-                            <p class="text-secondary small flex-grow-1 mb-3">3 Pizzas Medianas para 
-                                compartir con el grupo selecto</p>
+                            <p class="text-secondary small flex-grow-1 mb-3">3 Pizzas Medianas para compartir con el
+                                grupo selecto</p>
                             <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                                 <button
                                     class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center">
@@ -246,15 +261,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tarjeta 3 -->
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
-                        <img src="images/producto_combo3.jpg" class="card-img-top object-fit-cover"
-                            alt="El Silencio">
+                        <img src="images/producto_combo3.jpg" class="card-img-top" alt="El Silencio">
                         <div class="card-body d-flex flex-column text-center p-3">
                             <h5 class="fw-bold fs-6 mb-1">El Silencio</h5>
-                            <p class="text-secondary small flex-grow-1 mb-3">1 Pizza Familiar a elección +
-                                Palitos de Ajo artesanales
-                            </p>
+                            <p class="text-secondary small flex-grow-1 mb-3">1 Pizza Familiar a elección + Palitos de
+                                Ajo artesanales</p>
                             <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                                 <button
                                     class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center">
@@ -264,15 +276,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tarjeta 4 -->
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
-                        <img src="images/producto_combo4.jpg" class="card-img-top object-fit-cover"
-                            alt="Pacto Caleta">
+                        <img src="images/producto_combo4.jpg" class="card-img-top" alt="Pacto Caleta">
                         <div class="card-body d-flex flex-column text-center p-3">
                             <h5 class="fw-bold fs-6 mb-1">Pacto Caleta</h5>
-                            <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Familiares + Alitas 
-                                BBQ + Gaseosa 1.5L
-                            </p>
+                            <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Familiares + Alitas BBQ + Gaseosa
+                                1.5L</p>
                             <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                                 <button
                                     class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center">
@@ -287,7 +296,7 @@
         </section>
     </main>
 
-    <footer class="py-5 bg-dark text-white text-start">
+    <footer class="py-5 text-start">
         <div class="container">
             <div class="row g-4">
 
@@ -295,7 +304,7 @@
                 <div class="col-12 col-md-3">
                     <img class="img-fluid mb-3" src="images/lacaleta.png" alt="La Caleta Logo"
                         style="max-width: 140px;">
-                    <h6 class="fw-bold text-white mb-2">Síguenos en</h6>
+                    <h6 class="fw-bold mb-2">Síguenos en</h6>
                     <div class="d-flex gap-3 fs-5">
                         <a href="#" class="text-white-50 text-decoration-none"><i class="fa-brands fa-facebook"></i></a>
                         <a href="#" class="text-white-50 text-decoration-none"><i
@@ -307,7 +316,7 @@
 
                 <!-- Columna 2: Nuestros Productos -->
                 <div class="col-6 col-md-3">
-                    <h6 class="fw-bold text-white mb-3">Nuestros Productos</h6>
+                    <h6 class="fw-bold mb-3">Nuestros Productos</h6>
                     <ul class="list-unstyled small">
                         <li class="mb-2"><a class="text-secondary text-decoration-none" href="#">Pizzas Principales</a>
                         </li>
@@ -321,7 +330,7 @@
 
                 <!-- Columna 3: Ayuda / Legal -->
                 <div class="col-6 col-md-3">
-                    <h6 class="fw-bold text-white mb-3">Ayuda & Términos</h6>
+                    <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
                     <ul class="list-unstyled small">
                         <li class="mb-2"><a class="text-secondary text-decoration-none" href="#">Preguntas
                                 Frecuentes</a></li>
@@ -337,20 +346,20 @@
                 <!-- Columna 4: Pagos y Libro de Reclamaciones -->
                 <div class="col-12 col-md-3">
                     <div class="mb-4">
-                        <h6 class="fw-bold text-white mb-2">Métodos de Pago</h6>
+                        <h6 class="fw-bold mb-2">Métodos de Pago</h6>
                         <div class="d-flex align-items-center gap-2">
-                            <img src="images/visa.jpg" alt="Visa" class="rounded bg-white p-1"
+                            <img src="images/visa.jpg" alt="Visa" class="bg-white p-1"
                                 style="height: 30px; object-fit: contain;">
-                            <img src="images/mastercard.jpg" alt="Mastercard" class="rounded bg-white p-1"
+                            <img src="images/mastercard.jpg" alt="Mastercard" class="bg-white p-1"
                                 style="height: 30px; object-fit: contain;">
-                            <img src="images/yape.jpg" alt="Yape" class="rounded bg-white p-1"
+                            <img src="images/yape.jpg" alt="Yape" class="bg-white p-1"
                                 style="height: 30px; object-fit: contain;">
                         </div>
                     </div>
                     <div>
-                        <h6 class="fw-bold text-white mb-2">Libro de Reclamaciones</h6>
+                        <h6 class="fw-bold mb-2">Libro de Reclamaciones</h6>
                         <a href="#">
-                            <img src="images/libro_reclamaciones.jpg" alt="Libro de Reclamaciones" class="rounded"
+                            <img src="images/libro_reclamaciones.jpg" alt="Libro de Reclamaciones"
                                 style="max-height: 45px;">
                         </a>
                     </div>
