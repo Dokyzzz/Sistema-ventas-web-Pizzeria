@@ -336,3 +336,84 @@ footer {
     color: var(--color-blanco);
     border-color: var(--color-rojo-naranja);
 }
+
+.buscador-input {
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-blanco);
+    border-radius: 30px;
+    font-size: 14px;
+    transition: var(--transicion);
+}
+
+.buscador-input:focus {
+    background-color: var(--color-negro-suave);
+    border-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.35);
+}
+
+.buscador-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-buscar:hover {
+    color: var(--color-rojo-naranja) !important;
+}
+
+.accordion-button::after {
+    filter: invert(1) grayscale(100%);
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: invert(36%) sepia(98%) saturate(3025%) hue-rotate(1deg) brightness(101%) contrast(105%);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-rojo-naranja) !important;
+}
+
+#categorias {
+    background-color: rgba(24, 24, 24, 0.95);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    z-index: 1020;
+}
+
+.categorias-scroll {
+    scrollbar-width: none;
+}
+
+.categorias-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-categoria {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    transition: var(--transicion);
+    text-decoration: none;
+}
+
+.btn-categoria:hover {
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+    background-color: rgba(255, 69, 0, 0.15);
+}
+
+.btn-categoria.active {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+}
+
+section[id] {
+    scroll-margin-top: 70px;
+}
