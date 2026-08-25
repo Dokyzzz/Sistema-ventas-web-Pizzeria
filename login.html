@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Caleta | Pizzería Secreta</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style/styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -52,8 +53,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="menuNavegacion">
                 <nav
                     class="d-flex flex-column flex-lg-row align-items-end align-items-lg-center gap-3 gap-lg-2 p-3 p-lg-0 my-2 my-lg-0">
-                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap"
-                        href="#">Menú</a>
+                    <a id="navLinkMenu" class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap"
+                        href="index.html">Menú</a>
                     <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="#">Promociones</a>
                     <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="#">Locales</a>
                     <!-- Carrito -->
@@ -62,61 +63,63 @@
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span>S/ 0.00</span>
                     </a>
-                    <!-- Iniciar Sesión -->
-                    <a class="d-flex align-items-center gap-2 text-white ms-lg-2 text-nowrap" href="login.html">
-                        <i class="fa-solid fa-user"></i>
-                        <span>Iniciar sesión</span>
-                    </a>
+                    <!-- Contenedor Dinámico de Usuario / Sesión -->
+                    <div id="navUserArea" class="d-flex align-items-center ms-lg-2">
+                        <a class="d-flex align-items-center gap-2 text-white text-nowrap" href="login.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Iniciar sesión</span>
+                        </a>
+                    </div>
                 </nav>
             </div>
         </div>
     </header>
 
     <!-- Contenido Principal -->
-<main>
-    <div class="contenedor-login">
-        <div class="login-grid">
-            
-            <div class="login-seccion login-izq">
-                <h2 class="login-titulo">INICIAR SESIÓN</h2>
-                <form>
-                    <div class="username">
-                        <label>Correo electrónico <span>*</span></label>
-                        <input type="email" placeholder="Ej. nombre@mail.com" required>
-                    </div>
-
-                    <div class="username input-password-box">
-                        <label>Contraseña <span>*</span></label>
-                        <div class="input-relative">
-                            <input type="password" placeholder="pizza123" required>
-                            <i class="fa-regular fa-eye icono-ojo"></i>
+    <main>
+        <div class="contenedor-login">
+            <div class="login-grid">
+                
+                <div class="login-seccion login-izq">
+                    <h2 class="login-titulo">INICIAR SESIÓN</h2>
+                    <form id="formLogin">
+                        <div class="username">
+                            <label>Correo electrónico <span>*</span></label>
+                            <input type="email" id="loginEmail" placeholder="Ej. nombre@mail.com" required>
                         </div>
-                    </div>
 
-                    <div class="recordar">Olvidé mi contraseña</div>
+                        <div class="username input-password-box">
+                            <label>Contraseña <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="loginPassword" placeholder="pizza123" required>
+                                <i class="fa-regular fa-eye icono-ojo" id="toggleEye"></i>
+                            </div>
+                        </div>
 
-                    <input type="submit" value="INICIAR SESIÓN" class="btn-login">
-                </form>
+                        <div class="recordar">Olvidé mi contraseña</div>
+
+                        <input type="submit" value="INICIAR SESIÓN" class="btn-login">
+                    </form>
+                </div>
+
+                <div class="login-seccion login-der">
+                    <h2 class="login-titulo">CREAR CUENTA</h2>
+                    
+                    <p class="beneficios-subtitulo">Crea una y aprovecha los beneficios:</p>
+                    
+                    <ul class="beneficios-lista">
+                        <li>Realiza tus compras de manera más ágil.</li>
+                        <li>Guarda múltiples direcciones de envío y facturación.</li>
+                        <li>Realiza el seguimiento a tus compras y revisa tus pedidos realizados.</li>
+                        <li>Haz una lista de productos favoritos.</li>
+                    </ul>
+
+                    <a href="create.html" class="btn-crear-cuenta">CREAR CUENTA</a>
+                </div>
+
             </div>
-
-            <div class="login-seccion login-der">
-                <h2 class="login-titulo">CREAR CUENTA</h2>
-                
-                <p class="beneficios-subtitulo">Crea una y aprovecha los beneficios:</p>
-                
-                <ul class="beneficios-lista">
-                    <li>Realiza tus compras de manera más ágil.</li>
-                    <li>Guarda múltiples direcciones de envío y facturación.</li>
-                    <li>Realiza el seguimiento a tus compras y revisa tus pedidos realizados.</li>
-                    <li>Haz una lista de productos favoritos.</li>
-                </ul>
-
-                <a href="#" class="btn-crear-cuenta">CREAR CUENTA</a>
-            </div>
-
         </div>
-    </div>
-</main>
+    </main>
 
     <footer class="py-4 text-center">
         <div class="container">
@@ -125,6 +128,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
