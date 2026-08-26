@@ -417,3 +417,48 @@ footer {
 section[id] {
     scroll-margin-top: 70px;
 }
+
+.text-ro {
+    color: var(--color-rojo-naranja);
+}
+
+.bg-ro {
+    background-color: var(--color-rojo-naranja);
+}
+
+.fs-xs {
+    font-size: 11px;
+}
+
+.table-dark {
+    --bs-table-bg: var(--color-negro-suave);
+}
+
+.hover-rojo:hover {
+    color: var(--color-rojo-naranja) !important;
+}
+
+.card-resumen,
+.card.bg-dark {
+    background-color: var(--color-negro-suave) !important;
+}
+
+/* Estilos para el selector de método de pago */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.tarjeta-opcion-pago {
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: var(--transicion);
+}
+
+.tarjeta-opcion-pago:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 69, 0, 0.4) !important;
+}
+
+.tarjeta-opcion-pago:has(input:checked) {
+    border-color: var(--color-rojo-naranja) !important;
+    background-color: rgba(255, 69, 0, 0.08);
+}
