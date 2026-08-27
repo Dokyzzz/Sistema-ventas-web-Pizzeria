@@ -84,7 +84,7 @@ app.post('/api/login', async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("Error en el login:", error);
         res.status(500).json({ error: "Error interno del servidor." });
     }
 });
@@ -107,7 +107,7 @@ app.post('/api/register', async (req, res) => {
 
         // 2. Buscar automáticamente el ID del rol "CLIENTE" en la tabla roles
         const rolCliente = await prisma.rol.findFirst({
-            where: { nombre: 'CLIENTE' }
+            where: { nombre: { equals: 'CLIENTE', mode: 'insensitive' } } // Búsqueda insensible a mayúsculas
         });
 
         if (!rolCliente) {
@@ -122,7 +122,7 @@ app.post('/api/register', async (req, res) => {
             data: {
                 email: email,
                 passwordHash: passwordHash,
-                nombre: `${nombre} ${apellido}`, // Unimos nombre y apellido para ajustarse al modelo
+                nombre: `${nombre} ${apellido}`.trim(), // Unimos nombre y apellido para ajustarse al modelo
                 telefono: telefono || null,
                 rolId: rolCliente.id
             }
@@ -216,12 +216,22 @@ app.post('/api/carrito/add', middlewareVerificarToken,  async (req, res) => {
             });
         }
 
-        // (Aquí faltaría recalcular el Total de la Orden sumando los subtotales)
+        // 5. Recalcular el Total de la Orden sumando los subtotales
+        const detalles = await prisma.detalleOrden.findMany({
+            where: { ordenId: carrito.id }
+        });
 
-        res.json({ mensaje: "Producto añadido al carrito." });
+        const nuevoTotal = detalles.reduce((acc, detalle) => acc + Number(detalle.subtotal), 0);
+
+        await prisma.orden.update({
+            where: { id: carrito.id },
+            data: { total: nuevoTotal }
+        });
+
+        res.json({ mensaje: "Producto añadido al carrito correctamente." });
 
     } catch (error) {
-        console.error(error);
+        console.error("Error al añadir al carrito:", error);
         res.status(500).json({ error: "Error al añadir al carrito." });
     }
 });

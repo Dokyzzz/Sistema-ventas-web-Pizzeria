@@ -51,16 +51,41 @@ document.addEventListener("DOMContentLoaded", () => {
     // (Aún usa LocalStorage, lo conectaremos a Node.js en el siguiente paso)
     const formRegistro = document.getElementById("formRegistro");
     if (formRegistro) {
-        formRegistro.addEventListener("submit", (e) => {
+        formRegistro.addEventListener("submit", async (e) => {
             e.preventDefault();
-            const password = document.getElementById("regPassword").value;
-            const confirmPassword = document.getElementById("regPasswordConfirm").value;
+            
+            // Capturamos los datos (Asegúrate de que estos IDs coincidan con tu HTML)
+            const nombre = document.getElementById("regNombre")?.value.trim() || "";
+            const apellido = document.getElementById("regApellido")?.value.trim() || "";
+            const email = document.getElementById("regEmail")?.value.trim().toLowerCase() || "";
+            const telefono = document.getElementById("regTelefono")?.value.trim() || null;
+            const password = document.getElementById("regPassword")?.value || "";
+            const confirmPassword = document.getElementById("regPasswordConfirm")?.value || "";
 
             if (password !== confirmPassword) {
                 alert("Las contraseñas no coinciden. Por favor verifica.");
                 return;
             }
-            alert("El registro local está pausado. ¡Pronto lo conectaremos a la Base de Datos!");
+
+            try {
+                const respuesta = await fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nombre, apellido, email, telefono, password })
+                });
+
+                const datos = await respuesta.json();
+
+                if (respuesta.ok) {
+                    alert("¡Registro exitoso! Ya puedes iniciar sesión.");
+                    window.location.href = "login.html";
+                } else {
+                    alert(`Error: ${datos.error}`);
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error crítico: No se pudo conectar con el servidor.");
+            }
         });
     }
 
@@ -88,13 +113,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     localStorage.setItem('token', datos.token);
                     localStorage.setItem("sesion_activa", JSON.stringify(datos.usuario));
 
-                    // Redirección según rol proveniente de PostgreSQL
-                    if (datos.usuario.rol === "ADMIN") {
+                    // Redirección dinámica basada en roles
+                    if (datos.usuario.rol.toUpperCase() === "ADMIN") {
                         alert(`Bienvenido Administrador: ${datos.usuario.nombre}`);
                         window.location.href = "admin.html";
                     } else {
                         alert(`Bienvenido ${datos.usuario.nombre}`);
-                        window.location.href = "index.html";
+                        window.location.href = "index.html"; // O la ruta principal
                     }
                 } else {
                     alert(`Error: ${datos.error}`);
@@ -295,39 +320,47 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarCarrito();
 }); 
 
-async function agregarAlCarrito(productoVarianteId) {
+async function agregarAlCarrito(productoVarianteId, cantidad = 1) {
     const token = localStorage.getItem('token');
     
+    // Verificación en frontend si hay un JWT
     if (!token) {
-        alert("Debes iniciar sesión para añadir productos al carrito.");
-        window.location.href = "login.html"; // O la ruta a tu página de login
+        alert("Debes iniciar sesión para añadir productos a tu carrito.");
+        window.location.href = "login.html"; 
         return;
     }
 
     try {
-        // Esta URL cambiará a tu URL de Render/Railway cuando subas el backend a la nube
-        const response = await fetch('http://localhost:3000/api/carrito/add', {
+        const respuesta = await fetch('http://localhost:3000/api/carrito/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Enviamos el JWT para identificar al usuario
+                'Authorization': `Bearer ${token}` // Enviamos el JWT como Bearer token
             },
             body: JSON.stringify({
                 productoVarianteId: productoVarianteId,
-                cantidad: 1
+                cantidad: cantidad
             })
         });
 
-        const data = await response.json();
+        const datos = await respuesta.json();
 
-        if (response.ok) {
-            alert(data.mensaje); // "Producto añadido al carrito."
-            // Opcional: Llamar a una función para actualizar el ícono del carrito
+        if (respuesta.ok) {
+            alert(datos.mensaje); 
+            // TODO: Si tienes una función para actualizar el contador del ícono del carrito, llámala aquí.
         } else {
-            alert(data.error || "Ocurrió un error.");
+            // Manejador de errores enviados desde el backend (ej. 401 sin autorización)
+            if(respuesta.status === 401 || respuesta.status === 403) {
+                 alert("Tu sesión ha expirado o no es válida. Inicia sesión nuevamente.");
+                 localStorage.removeItem('token');
+                 localStorage.removeItem('sesion_activa');
+                 window.location.href = "login.html";
+            } else {
+                 alert(`Atención: ${datos.error}`);
+            }
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("Error al conectar con el servidor.");
+        console.error("Error de conexión:", error);
+        alert("Error de red: No se pudo añadir el producto.");
     }
 }
