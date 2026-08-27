@@ -182,3 +182,152 @@ function cerrarSesion() {
     localStorage.removeItem("token");
     window.location.href = "login.html";
 }
+
+ // CARRITO DE COMPRAS DINÁMICO
+
+
+// 1. Inicializar o leer el carrito desde localStorage
+let carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+
+// 2. Función para agregar productos (se llamará desde los botones del menú)
+
+function agregarAlCarrito(nombre, precio, imagenUrl) {
+    // Buscamos si la pizza ya está en el carrito
+    const itemExistente = carrito.find(item => item.nombre === nombre);
+
+    if (itemExistente) {
+        itemExistente.cantidad += 1; // Si existe, sumamos 1 a la cantidad
+    } else {
+        // Si no existe, lo agregamos como un nuevo objeto
+        carrito.push({
+            nombre: nombre,
+            precio: parseFloat(precio),
+            cantidad: 1,
+            imagenUrl: imagenUrl
+        });
+    }
+
+    // Guardamos en el navegador y mostramos una pequeña alerta
+    localStorage.setItem('carrito_caleta', JSON.stringify(carrito));
+    alert(`¡${nombre} se agregó al carrito!`);
+    
+    // (Opcional) Si quieres actualizar el número en el ícono del carrito arriba, lo haríamos aquí
+}
+
+// 3. Función para renderizar (dibujar) el carrito en cart.html
+function renderizarCarrito() {
+    // Verificamos si estamos en la página del carrito
+    const contenedorItems = document.getElementById('carrito-items');
+    if (!contenedorItems) return; // Si no estamos en cart.html, detenemos la función
+
+    const subtotalDOM = document.getElementById('resumen-subtotal');
+    const totalDOM = document.getElementById('resumen-total');
+    
+    // Si el carrito está vacío, limpiamos la tabla
+    if (carrito.length === 0) {
+        contenedorItems.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-secondary">Tu carrito está vacío. ¡Ve al menú y elige tu pizza secreta!</td></tr>`;
+        subtotalDOM.innerText = "S/ 0.00";
+        totalDOM.innerText = "S/ 0.00";
+        return;
+    }
+
+    // Limpiamos la tabla estática y empezamos a sumar
+    contenedorItems.innerHTML = '';
+    let subtotalPagar = 0;
+
+    // Recorremos cada producto del carrito para crear su fila HTML
+    carrito.forEach((item, index) => {
+        const subtotalItem = item.precio * item.cantidad;
+        subtotalPagar += subtotalItem;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td class="ps-4 py-3">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="${item.imagenUrl}" alt="${item.nombre}" class="rounded-2 object-fit-cover" style="width: 55px; height: 55px;">
+                    <div>
+                        <h6 class="fw-bold mb-0 text-white">${item.nombre}</h6>
+                        <button onclick="eliminarDelCarrito(${index})" class="btn btn-link text-danger p-0 text-decoration-none small border-0 mt-1" style="font-size: 11px;">
+                            <i class="fa-solid fa-trash-can me-1"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+            </td>
+            <td class="text-center py-3">
+                <div class="d-inline-flex align-items-center border border-secondary border-opacity-50 rounded-pill px-2 py-1">
+                    <button onclick="cambiarCantidad(${index}, -1)" class="btn btn-sm text-white p-0 border-0 shadow-none"><i class="fa-solid fa-minus fs-xs"></i></button>
+                    <span class="px-2 fw-semibold small">${item.cantidad}</span>
+                    <button onclick="cambiarCantidad(${index}, 1)" class="btn btn-sm text-white p-0 border-0 shadow-none"><i class="fa-solid fa-plus fs-xs"></i></button>
+                </div>
+            </td>
+            <td class="text-end text-secondary small py-3">S/ ${item.precio.toFixed(2)}</td>
+            <td class="text-end fw-bold text-white py-3 pe-4">S/ ${subtotalItem.toFixed(2)}</td>
+        `;
+        contenedorItems.appendChild(tr);
+    });
+
+    // Actualizamos los totales (El costo de envío es 5.00 fijo por ahora según tu HTML)
+    subtotalDOM.innerText = `S/ ${subtotalPagar.toFixed(2)}`;
+    const costoEnvio = 5.00;
+    const totalPagar = subtotalPagar + costoEnvio;
+    totalDOM.innerText = `S/ ${totalPagar.toFixed(2)}`;
+}
+
+// 4. Funciones auxiliares para modificar cantidades y eliminar
+function cambiarCantidad(indice, variacion) {
+    carrito[indice].cantidad += variacion;
+    if (carrito[indice].cantidad <= 0) {
+        eliminarDelCarrito(indice);
+    } else {
+        localStorage.setItem('carrito_caleta', JSON.stringify(carrito));
+        renderizarCarrito(); // Redibujamos la tabla
+    }
+}
+
+function eliminarDelCarrito(indice) {
+    carrito.splice(indice, 1); // Eliminamos el elemento del arreglo
+    localStorage.setItem('carrito_caleta', JSON.stringify(carrito));
+    renderizarCarrito(); // Redibujamos la tabla
+}
+
+// Ejecutar la renderización cuando cargue la página
+document.addEventListener("DOMContentLoaded", () => {
+    renderizarCarrito();
+}); 
+
+async function agregarAlCarrito(productoVarianteId) {
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        alert("Debes iniciar sesión para añadir productos al carrito.");
+        window.location.href = "login.html"; // O la ruta a tu página de login
+        return;
+    }
+
+    try {
+        // Esta URL cambiará a tu URL de Render/Railway cuando subas el backend a la nube
+        const response = await fetch('http://localhost:3000/api/carrito/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Enviamos el JWT para identificar al usuario
+            },
+            body: JSON.stringify({
+                productoVarianteId: productoVarianteId,
+                cantidad: 1
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.mensaje); // "Producto añadido al carrito."
+            // Opcional: Llamar a una función para actualizar el ícono del carrito
+        } else {
+            alert(data.error || "Ocurrió un error.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error al conectar con el servidor.");
+    }
+}
